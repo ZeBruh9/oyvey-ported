@@ -38,3 +38,20 @@ public class FlyModule extends Module {
         FlyModule.mc.field_1724.method_5996(class_5134.field_47761).method_6192(0.0);
     }
 }
+
+@Override
+public void onTick() {
+    if (FlyModule.nullCheck()) return;
+
+    // Set zero gravity
+    FlyModule.mc.field_1724.method_5996(class_5134.field_47761).method_6192(0.0);
+
+    // Optional: Vertical movement when holding Jump or Sneak
+    if (FlyModule.mc.options.jumpKey.isPressed()) {
+        FlyModule.mc.field_1724.method_18798().y = 0.5; // Ascend
+    } else if (FlyModule.mc.options.sneakKey.isPressed()) {
+        FlyModule.mc.field_1724.method_18798().y = -0.5; // Descend
+    } else {
+        FlyModule.mc.field_1724.method_18798().y = 0.0; // Hover in place
+    }
+}
